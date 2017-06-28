@@ -111,16 +111,13 @@ public class SubscriptionListUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewDetailMouseClicked
-        
-        
-        
+       
         if(subTable.getSelectedRowCount() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to proceed", "Error", HEIGHT);
         } else {
             int selectedTableRow = subTable.getSelectedRow();
             int selectedModelRow = subTable.convertRowIndexToModel(selectedTableRow);
-            SubscriptionListUI.this.subCtrl.getSubscriptionListDetail(selectedModelRow);
-            
+            SubscriptionListUI.this.subCtrl.getSubscriptionListDetail(selectedModelRow); 
         }
         
     }//GEN-LAST:event_viewDetailMouseClicked
