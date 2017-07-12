@@ -1,7 +1,5 @@
 
-import java.util.Date;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import java.io.Serializable;
 
 
 
@@ -16,16 +14,13 @@ import javax.swing.JFrame;
  *
  * @author Youngmin
  */
-public class SubscriptionCtrl {
+public class SubscriptionCtrl implements Serializable {
     
     // Instance Variables
     SubscriptionUI subUI;
     SubscriptionList subList;
     SubscriptionListUI subListUI;
-    SubscriptionTableModel subListTableModel;
-    SubscriptionListDetailUI subListDetailUI;
-    SubscriptionListNew subListNew;
-
+    SubscriptionList currentSubscriptionList;
     public SubscriptionCtrl(SubscriptionUI subUI) {
         
         // Supports navigating back to the Main Menu
@@ -35,57 +30,15 @@ public class SubscriptionCtrl {
         // When instantiated it will get the individual Instruments
         subList = new SubscriptionList();
         
-        // Instantiate JTable Model
-        subListTableModel = new SubscriptionTableModel(subList.getSubscriptionList());
-        
         // Show the list of model objects in the UI
         subListUI = new SubscriptionListUI(this);
         subListUI.setVisible(true);
         
     }
-    
-    public SubscriptionTableModel getSubscriptionTableModel() {
-        return subListTableModel;
-    }
-    
-    public void addSubscription(String text, double subPrice, String date) {
-        subListUI.dispose();
-        subList.subscriptionList.add(new Subscription(text, subPrice, date));
-        subListTableModel = new SubscriptionTableModel(subList.getSubscriptionList());
-        subListUI = new SubscriptionListUI(this);
-        subListUI.setVisible(true);
-    }
-    
-    public void deleteSubscription(int pos) {
-        subListUI.dispose();
-        subList.subscriptionList.remove(pos);
-        subListTableModel = new SubscriptionTableModel(subList.getSubscriptionList());
-        subListUI = new SubscriptionListUI(this);
-        subListUI.setVisible(true);
-    }
-    
-    public void updateSubscription(String name, double price, String date, int pos) {
-        subListUI.dispose();
-        subList.updateList(name, price, date, pos);
-        subListTableModel = new SubscriptionTableModel(subList.getSubscriptionList());
-        subListUI = new SubscriptionListUI(this);
-        subListUI.setVisible(true);
-    }
-    
-    public SubscriptionListDetailUI getSubscriptionListDetail(int selectedRow) {
-        subListDetailUI = new SubscriptionListDetailUI(this, selectedRow);
-        subListDetailUI.setVisible(true);
-        subListDetailUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        return subListDetailUI;
-    }
-    
-    public SubscriptionListNew getSubscriptionNew() {
-        subListNew = new SubscriptionListNew(this);
-        subListNew.setVisible(true);
-        subListNew.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        return subListNew;
-    }
+    public SubscriptionCtrl() {
+        // Get the current SubscriptionList
+        currentSubscriptionList = new SubscriptionList();   
 
-    
+    }
       
 }

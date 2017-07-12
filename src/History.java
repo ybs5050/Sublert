@@ -1,8 +1,5 @@
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,31 +11,21 @@ import java.util.Set;
  *
  * @author Youngmin 
  */
-public class History extends Information {
+public class History extends Information implements Serializable {
     
-    private LinkedHashMap<String, Date> alertHistory = new LinkedHashMap<>();
+    private String subscription = "";
+    private Date date;
     
-    public History(String userName, int numSubscription) {
+    public History(String userName, int numSubscription, Date date, String subscription) {
         super(userName, numSubscription);
-    }
-    
-    public LinkedHashMap<String, Date> getAlertHistory () {
-        return this.alertHistory;
-    }
-    
-    public void addHistory (Subscription newSubscription, Date date) {
-        this.alertHistory.put(newSubscription.getSubscriptionName(), date);
+        this.date = date;
+        this.subscription = subscription;
     }
     
     @Override
     public void showInformation() {
-        System.out.println("Alert History---");
-        Set set = alertHistory.entrySet();
-        Iterator it = set.iterator(); //alertHistory iterator
-        while(it.hasNext()) {
-            Map.Entry entry = (Map.Entry)it.next();
-            System.out.println("Subscription Name: "+entry.getKey()+" Alerted Date: "+entry.getValue());
-        }
+            System.out.println("Subscription Name: "+ this.subscription + " Alerted Date: " + this.date.toString());
     }
+
     
 }

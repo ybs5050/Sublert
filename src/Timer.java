@@ -1,4 +1,7 @@
 
+import java.io.Serializable;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +13,7 @@
  *
  * @author Youngmin
  */
-public class Timer {
+public class Timer implements Serializable {
     
     private int alertDaysPrior = 0;
     private int alertFrequency = 0;

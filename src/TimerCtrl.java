@@ -6,13 +6,12 @@
 
 /**
  *
- * @author Youngmin Son
+ * @author Youngmin
  */
-public interface NullCheck {
-    
-    public abstract void setNull();
-    
-    public abstract boolean checkNull();
-    
-    
+public class TimerCtrl {
+    TimerList currentTimerList;
+    public TimerCtrl() {
+        // Get the current TimerList
+        currentTimerList = new TimerList();   
+    }
 }

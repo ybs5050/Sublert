@@ -12,8 +12,10 @@ public class Main {
     
     public static void main(String[] args) {
         
-        SubscriptionUI subUI = new SubscriptionUI();
-        SubscriptionCtrl cont = new SubscriptionCtrl(subUI);
+        SerializedCollection sc = new SerializedCollection();
+        
+        //SubscriptionUI subUI = new SubscriptionUI();
+        //SubscriptionCtrl cont = new SubscriptionCtrl(subUI);
         
     }
     

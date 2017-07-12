@@ -1,3 +1,6 @@
+
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +11,7 @@
  *
  * @author Youngmin
  */
-public class Personal extends Information {
+public class Personal extends Information implements Serializable {
     //Inherit Information class
     
     private String userEmail = "";

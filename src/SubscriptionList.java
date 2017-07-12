@@ -1,7 +1,5 @@
-
-import java.util.ArrayList;
-import java.util.Date;
-
+import java.util.*;
+import java.io.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,44 +8,77 @@ import java.util.Date;
 
 /**
  *
- * @author Youngmin
+ * @author Youngmin 
  */
-public class SubscriptionList {
+public class SubscriptionList implements Serializable  {
     
-    ArrayList<Subscription> subscriptionList;
+    private ArrayList listOfSubscription = new ArrayList();
+    private String listOfSubscriptionFileName = "subscription.ser";
     
     public SubscriptionList() {
-        //instantiate the list of model objects
-        this.subscriptionList = new ArrayList<Subscription>();
-        
-        //fill in model objects with data
-        
-        subscriptionList.add(new Subscription("Amazon Prime", 9.99, "11/22/2017"));
-        subscriptionList.add(new Subscription("Netflix", 7.99, "1/1/18"));
-        subscriptionList.add(new Subscription("Hulu Plus", 12.59, "3/3/13"));
-        subscriptionList.add(new Subscription("YouTube Red", 5.99, "5/5/21"));
-        subscriptionList.add(new Subscription("Pandora", 3.99, "3/21/33"));
-        
-        
-        /*
-        // Print added objects
-        for(Subscription a: subscriptionList) {
-            System.out.println(a.getSubscriptionName() + " " + a.getSubscriptionPrice());
+
+        if(listOfSubscription.isEmpty() || listOfSubscription == null) {
+            this.createTestSubscriptionList();
+            this.writeSubscriptionListFile();
+            this.readSubscriptionListFile();
         }
-        System.out.println("----------------------------------------------------------------");
-        */
+        this.printSubscriptionList();
     }
     
-    public ArrayList<Subscription> getSubscriptionList() {
-        return subscriptionList;
+    public void readSubscriptionListFile() {
+        
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        try {
+            fis = new FileInputStream(listOfSubscriptionFileName);
+            in = new ObjectInputStream(fis);
+            listOfSubscription = (ArrayList)in.readObject();
+            in.close();
+            if(!listOfSubscription.isEmpty()){
+                System.out.println("There are subscriptions in the subscription list");
+            } 
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
     
-    public void setSubscriptionList(ArrayList<Subscription> subscriptionList) {
-        this.subscriptionList = subscriptionList;
+    public void writeSubscriptionListFile() {
+        
+        FileOutputStream fos = null;
+        ObjectOutputStream out = null;
+        try {
+            fos = new FileOutputStream(listOfSubscriptionFileName);
+            out = new ObjectOutputStream(fos);
+            out.writeObject(listOfSubscription);
+            out.close();
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+   }
+    
+   public void createTestSubscriptionList() {
+       
+        Date date = new Date();
+        for (int i = 0; i < 20; i++){
+            listOfSubscription.add(new Subscription("name", i));
+        }
+        System.out.println("Test SubscriptionList created");
+        System.out.println("The SubscriptionList is: "+listOfSubscription);
     }
     
-    public void updateList(String name, double price, String date, int pos) {
-        this.subscriptionList.set(pos, new Subscription(name, price, date));
+   public void printSubscriptionList() {
+
+        System.out.println("The SubscriptionList has these subscriptions:");
+        for(int i = 0; i < listOfSubscription.size(); i++){
+            Subscription currentSubscription = (Subscription) listOfSubscription.get(i);
+            System.out.println(currentSubscription.getSubscriptionPrice());
+        }
     }
-      
+   
+   public ArrayList getList() {
+       return this.listOfSubscription;
+   }
+    
 }

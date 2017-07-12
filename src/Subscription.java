@@ -1,6 +1,7 @@
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.Serializable;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,33 +15,25 @@ import java.util.Date;
  */
 
 //Base model class
-public class Subscription {
+public class Subscription implements Serializable {
     
     private String subscriptionName = "";
     private String subscriptionLogoURL = "";
     private double subscriptionPrice = 0;
-    private Date subscriptionDate = new Date();
     
     public Subscription(String subscriptionName, double subscriptionPrice) {
         this.subscriptionName = subscriptionName;
         this.subscriptionPrice = subscriptionPrice;
     }
     
-    public Subscription(String subscriptionName, double subscriptionPrice, String subscriptionDate) {
-        this.subscriptionName = subscriptionName;
-        this.subscriptionPrice = subscriptionPrice;
-        this.subscriptionDate = new Date(subscriptionDate);
-    }
-    
     public Subscription(String subscriptionName) {
         this.subscriptionName = subscriptionName;
     }
     
-    public Subscription(String subscriptionName, double subscriptionPrice, String subscriptionDate, String subscriptionLogoURL) {
+    public Subscription(String subscriptionName, double subscriptionPrice, String subscriptionLogoURL) {
         this.subscriptionName = subscriptionName;
         this.subscriptionPrice = subscriptionPrice;
         this.subscriptionLogoURL = subscriptionLogoURL;
-        this.subscriptionDate = new Date(subscriptionDate);
     }
     
     public String getSubscriptionName() {
@@ -51,13 +44,8 @@ public class Subscription {
         return subscriptionLogoURL;
     }
     
-    public String getSubscriptionPrice() {
-        return Double.toString(subscriptionPrice);
-    }
-    
-    public String getSubscriptionDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        return new String(formatter.format(this.subscriptionDate));
+    public double getSubscriptionPrice() {
+        return subscriptionPrice;
     }
     
     public void setSubscriptionName(String subscriptionName) {
@@ -71,10 +59,5 @@ public class Subscription {
     public void setSubscriptionPrice(double subscriptionPrice) {
         this.subscriptionPrice = subscriptionPrice;
     }
-    
-    public void setSubscriptionDate(String date) {
-        this.subscriptionDate = new Date(date);
-    }
-    
     
 }
