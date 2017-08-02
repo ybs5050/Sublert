@@ -1,3 +1,8 @@
+
+import java.text.ParseException;
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,12 +15,35 @@
  */
 public class Main {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         
-        SerializedCollection sc = new SerializedCollection();
+        /*
+        //Instantiate the class containing the LinkedList in the main method.
         
+        SubscriptionLinkedList ll = new SubscriptionLinkedList(0);
+        System.out.println("---------Add a node with name 'Google' and price '333'----------");
+        ll.addItem(new Subscription("Google", 333));
+        ll.printSubscriptionList();
+        System.out.println("---------Removed a node with name 'Google' and price '333'----------");
+        ll.removeItem(new Subscription("Google", 333));
+        ll.printSubscriptionList();
+        System.out.println("---------Get a node with name 'HBO''----------");
+        Subscription temp = ll.getItem("HBO");
+        if(temp != null) {
+            System.out.println("Name: " + temp.getSubscriptionName() + " Price: " + temp.getSubscriptionPrice());
+        } else {
+            System.out.println("a not found");
+        }
+        */
+        // Start app with real values
         //SubscriptionUI subUI = new SubscriptionUI();
         //SubscriptionCtrl cont = new SubscriptionCtrl(subUI);
+        
+        TimerHashMap tm = new TimerHashMap(0);
+        Subscription s5 = new Subscription("Pandora", 9.99, "07/31/17");
+        System.out.println(tm.removeItem(s5));
+        tm.printTimerHashMapList();
+        tm.writeTimerHashMapFile();
         
     }
     

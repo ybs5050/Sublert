@@ -2,7 +2,12 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,23 +26,14 @@ public class SubscriptionListUI extends javax.swing.JFrame {
      */
     
     private SubscriptionCtrl subCtrl;
-    private ArrayList<Subscription> subUIList;
-    private int currentPos;
+    private LinkedList<Subscription> subUIList;
     
     public SubscriptionListUI(SubscriptionCtrl subCtrl) {
         this.subCtrl = subCtrl;
+        this.subUIList = subCtrl.subList.getList();
         this.setTitle("Simple MVC Application");
         initComponents();
-        
-        // Copy Object list from Controller
-        this.subUIList = subCtrl.subList.getList();
-        
-        // Get first model object's data
-        String initSubscriptionName = subUIList.get(0).getSubscriptionName();
-        double initSubscriptionPrice = subUIList.get(0).getSubscriptionPrice();
-        currentPos = 0;
-        // Show first model object's data
-        this.listTextArea.setText("Subscription Name: "+initSubscriptionName+"\n"+"Subscription Price: "+initSubscriptionPrice);
+         
     }
    
 
@@ -50,85 +46,45 @@ public class SubscriptionListUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listTextArea = new javax.swing.JTextArea();
-        listNext = new javax.swing.JButton();
-        listPrev = new javax.swing.JButton();
-        newSubscriptionName = new javax.swing.JTextField();
-        newSubscriptionPrice = new javax.swing.JTextField();
-        editServiceNameBtn = new javax.swing.JButton();
-        editServicePriceBtn = new javax.swing.JButton();
-        addNewServiceBtn = new javax.swing.JButton();
-        deleteServiceBtn = new javax.swing.JButton();
-        resetBtn = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        subTable = new javax.swing.JTable();
+        newButton = new javax.swing.JButton();
+        viewDetail = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
+        viewHistory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        listTextArea.setEditable(false);
-        listTextArea.setColumns(20);
-        listTextArea.setRows(5);
-        jScrollPane1.setViewportView(listTextArea);
+        subTable.setModel(new SubscriptionTableModel(subCtrl.subList.getList()));
+        subTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(subTable);
+        subTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        listNext.setText("Next");
-        listNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listNextActionPerformed(evt);
-            }
-        });
-
-        listPrev.setText("Previous");
-        listPrev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listPrevActionPerformed(evt);
-            }
-        });
-
-        newSubscriptionName.setText("Enter New Subscription Name");
-        newSubscriptionName.addMouseListener(new java.awt.event.MouseAdapter() {
+        newButton.setText("New");
+        newButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newSubscriptionNameMouseClicked(evt);
+                newButtonMouseClicked(evt);
             }
         });
 
-        newSubscriptionPrice.setText("Enter New Subscription Price");
-        newSubscriptionPrice.addMouseListener(new java.awt.event.MouseAdapter() {
+        viewDetail.setText("Detail");
+        viewDetail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newSubscriptionPriceMouseClicked(evt);
+                viewDetailMouseClicked(evt);
             }
         });
 
-        editServiceNameBtn.setText("Change Current Subscription Name");
-        editServiceNameBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        exitButton.setText("Done");
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editServiceNameBtnMouseClicked(evt);
+                exitButtonMouseClicked(evt);
             }
         });
 
-        editServicePriceBtn.setText("Change Current Subscription Price");
-        editServicePriceBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        viewHistory.setText("View Alert History");
+        viewHistory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editServicePriceBtnMouseClicked(evt);
-            }
-        });
-
-        addNewServiceBtn.setText("Add a New Subscription");
-        addNewServiceBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addNewServiceBtnMouseClicked(evt);
-            }
-        });
-
-        deleteServiceBtn.setText("Delete this Subscription");
-        deleteServiceBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteServiceBtnMouseClicked(evt);
-            }
-        });
-
-        resetBtn.setText("Reset");
-        resetBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                resetBtnMouseClicked(evt);
+                viewHistoryMouseClicked(evt);
             }
         });
 
@@ -136,229 +92,70 @@ public class SubscriptionListUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deleteServiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addNewServiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(listPrev, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newSubscriptionName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editServiceNameBtn, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newSubscriptionPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(listNext, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editServicePriceBtn))))
-                .addGap(177, 177, 177))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(resetBtn)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(viewHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listNext, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newSubscriptionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(newSubscriptionPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editServicePriceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editServiceNameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addNewServiceBtn)
+                    .addComponent(newButton)
+                    .addComponent(viewDetail)
+                    .addComponent(exitButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deleteServiceBtn)
-                .addGap(60, 60, 60)
-                .addComponent(resetBtn))
+                .addComponent(viewHistory)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPrevActionPerformed
-        
-        String newText = null;
-        if(!subUIList.isEmpty()) {
-            if(currentPos == 0) {
-                // if current shown element in the ArrayList is the first element, show the last element in the ArrayList 
-                newText = "Subscription Name: "+subUIList.get(subUIList.size()-1).getSubscriptionName()+"\n"+"Subscription Price: "+subUIList.get(subUIList.size()-1).getSubscriptionPrice();
-                currentPos = subUIList.size()-1;
-            } else {
-                // show previous element in the ArrayList
-                newText = "Subscription Name: "+subUIList.get(currentPos-1).getSubscriptionName()+"\n"+"Subscription Price: "+subUIList.get(currentPos-1).getSubscriptionPrice();
-                currentPos = currentPos-1;
-            }
-        
-            // Debug purposes
-                //System.out.println("Pos: "+currentPos+" "+"Name: "+subUIList.get(currentPos).getSubscriptionName()+" Method: Prev");
-            
-            // Update TextArea
-            this.listTextArea.setText(newText);
-        }
-    }//GEN-LAST:event_listPrevActionPerformed
-
-    private void listNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listNextActionPerformed
-        String newText = null;
-        if(!subUIList.isEmpty()) {
-            if(currentPos == subUIList.size()-1) {
-                // if current shown element in the ArrayList is the last element, show the first element in the ArrayList 
-                newText = "Subscription Name: "+subUIList.get(0).getSubscriptionName()+"\n"+"Subscription Price: "+subUIList.get(0).getSubscriptionPrice();
-                currentPos = 0;
-            } else {
-                // show next element in the ArrayList
-                newText = "Subscription Name: "+subUIList.get(currentPos+1).getSubscriptionName()+"\n"+"Subscription Price: "+subUIList.get(currentPos+1).getSubscriptionPrice();
-                currentPos = currentPos+1;
-            }
-        
-            // Debug purposes
-            //System.out.println("Pos: "+currentPos+" "+"Name: "+subUIList.get(currentPos).getSubscriptionName()+" Method: Next");
-            
-            // Update TextArea
-            this.listTextArea.setText(newText);
-        }
-    }//GEN-LAST:event_listNextActionPerformed
-
-    private void newSubscriptionNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newSubscriptionNameMouseClicked
-        if("Enter New Subscription Name".equals(this.newSubscriptionName.getText())) {
-            this.newSubscriptionName.setText("");
-        }
-    }//GEN-LAST:event_newSubscriptionNameMouseClicked
-
-    private void newSubscriptionPriceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newSubscriptionPriceMouseClicked
-        if("Enter New Subscription Price".equals(this.newSubscriptionPrice.getText())) {
-            this.newSubscriptionPrice.setText("");
-        }
-    }//GEN-LAST:event_newSubscriptionPriceMouseClicked
-
-    private void editServiceNameBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editServiceNameBtnMouseClicked
-        
-        // Edit data on a single object model
-        if("Enter New Subscription Name".equals(this.newSubscriptionName.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "Please Enter a New Subscription Name to Edit a Subscription Name or Add a new Subscription", "Error", HEIGHT);
-        } else if ("".equals(this.newSubscriptionName.getText().trim())){
-            JOptionPane.showMessageDialog(rootPane, "Please Enter a New Subscription Name to Edit a Subscription Name or Add a new Subscription", "Error", HEIGHT);      
+    private void viewDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewDetailMouseClicked
+       
+        if(subTable.getSelectedRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to proceed", "Error", HEIGHT);
         } else {
-            subUIList.get(currentPos).setSubscriptionName(this.newSubscriptionName.getText());
+            int selectedTableRow = subTable.getSelectedRow();
+            int selectedModelRow = subTable.convertRowIndexToModel(selectedTableRow);
+            SubscriptionListUI.this.subCtrl.getSubscriptionListDetail(selectedModelRow); 
         }
-        String newText = "Subscription Name: "+subUIList.get(currentPos).getSubscriptionName()+"\n"+"Subscription Price: "+subUIList.get(currentPos).getSubscriptionPrice();
-        this.listTextArea.setText(newText);
-        this.newSubscriptionName.setText("Enter New Subscription Name");
         
-    }//GEN-LAST:event_editServiceNameBtnMouseClicked
+    }//GEN-LAST:event_viewDetailMouseClicked
 
-    private void editServicePriceBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editServicePriceBtnMouseClicked
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
         
-        // Edit data on a single object model
-        if("Enter New Subscription Price".equals(this.newSubscriptionPrice.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "Please Enter a New Subscription Price to Edit a Subscription Price or Add a new Subscription", "Error", HEIGHT);
-        } else {
-            try{
-                subUIList.get(currentPos).setSubscriptionPrice(Double.parseDouble(this.newSubscriptionPrice.getText()));
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(rootPane, "Please Enter a Number", "Error", HEIGHT);
-            }
-            
-        }
-        String newText = "Subscription Name: "+subUIList.get(currentPos).getSubscriptionName()+"\n"+"Subscription Price: "+subUIList.get(currentPos).getSubscriptionPrice();
-        this.listTextArea.setText(newText);
-        this.newSubscriptionPrice.setText("Enter New Subscription Price");
-    }//GEN-LAST:event_editServicePriceBtnMouseClicked
+        SubscriptionListUI.this.dispose();
+        
+    }//GEN-LAST:event_exitButtonMouseClicked
 
-    private void addNewServiceBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewServiceBtnMouseClicked
-        
-        Subscription newSubscription = null;
-        boolean check = true;
-        // Create new Subscription object 
-        if("Enter New Subscription Name".equals(this.newSubscriptionName.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "Please Enter a New Subscription Name to Edit a Subscription Name or Add a new Subscription", "Error", HEIGHT);
-            check = false;
-        } else if ("".equals(this.newSubscriptionName.getText().trim())){
-            JOptionPane.showMessageDialog(rootPane, "Please Enter a New Subscription Name to Edit a Subscription Name or Add a new Subscription", "Error", HEIGHT);
-            check = false;
-        } else {
-            newSubscription = new Subscription(this.newSubscriptionName.getText());
-        }
-        
-        if("Enter New Subscription Price".equals(this.newSubscriptionPrice.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "Please Enter a New Subscription Price to Edit a Subscription Price or Add a new Subscription", "Error", HEIGHT);
-            check = false;
-        } else {
-            try{
-                newSubscription.setSubscriptionPrice(Double.parseDouble(this.newSubscriptionPrice.getText()));
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(rootPane, "Please Enter a Number", "Error", HEIGHT);
-                check = false;
-            }
-            
-        }
-        if(check) {
-            subUIList.add(newSubscription);
-            // Add Subscription object to ArrayList
-            String newText = "Subscription Name: "+subUIList.get(subUIList.size()-1).getSubscriptionName()+"\n"+"Subscription Price: "+subUIList.get(subUIList.size()-1).getSubscriptionPrice();
-            currentPos = subUIList.size()-1;
-        
-            // Show it to UI
-            this.listTextArea.setText(newText);
-            this.newSubscriptionName.setText("Enter New Subscription Name");
-            this.newSubscriptionPrice.setText("Enter New Subscription Price");
-            printCurrentSubscriptions();
-        }
-   
-    }//GEN-LAST:event_addNewServiceBtnMouseClicked
+    private void newButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newButtonMouseClicked
+        SubscriptionListUI.this.subCtrl.getSubscriptionNew();
+        subCtrl.saveCurrentSubscriptions();
+    }//GEN-LAST:event_newButtonMouseClicked
 
-    private void deleteServiceBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteServiceBtnMouseClicked
-        
-        // Clear if the user wants to delete the last element
-        if(subUIList.size() == 1) {
-            subUIList.clear();
-            this.listTextArea.setText("");
-        } else if (subUIList.size() > 0){ 
-            // Delete Current element
-            subUIList.remove(subUIList.get(currentPos));
-            String newText = "Subscription Name: "+subUIList.get(0).getSubscriptionName()+"\n"+"Subscription Price: "+subUIList.get(0).getSubscriptionPrice();
-            currentPos = 0;
-            // Show it to UI
-            this.listTextArea.setText(newText);
-        } else {
-            //Send error message if the list is already empty
-            JOptionPane.showMessageDialog(rootPane, "There is nothing to delete", "Error", HEIGHT);
-        }
-        printCurrentSubscriptions();
-    }//GEN-LAST:event_deleteServiceBtnMouseClicked
-
-    private void resetBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetBtnMouseClicked
-        
-        // Close current frame and dispose
-        setVisible(false);
-        dispose();
-        
-        // Invoke reset
-        subCtrl.subUI.reset();
-        
-    }//GEN-LAST:event_resetBtnMouseClicked
+    private void viewHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewHistoryMouseClicked
+        HistoryCtrl hisCont = new HistoryCtrl();
+        hisCont.getHistoryMapTableView(this.getX() + this.getWidth(), this.getY());
+    }//GEN-LAST:event_viewHistoryMouseClicked
     
     private void printCurrentSubscriptions() {
         
         // Print current arraylist
         System.out.println("List of Subscriptions in the ArrayList");
         for(Subscription i : subUIList) {
-            System.out.println(i.getSubscriptionName() + " " + i.getSubscriptionPrice());
+            System.out.println(i.getSubscriptionName() + " " + i.getSubscriptionPrice() + " " + i.getSubscriptionDate());
         }
         System.out.println("--------------------------------------------");
     }
@@ -369,16 +166,11 @@ public class SubscriptionListUI extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addNewServiceBtn;
-    private javax.swing.JButton deleteServiceBtn;
-    private javax.swing.JButton editServiceNameBtn;
-    private javax.swing.JButton editServicePriceBtn;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton listNext;
-    private javax.swing.JButton listPrev;
-    private javax.swing.JTextArea listTextArea;
-    private javax.swing.JTextField newSubscriptionName;
-    private javax.swing.JTextField newSubscriptionPrice;
-    private javax.swing.JButton resetBtn;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton newButton;
+    private javax.swing.JTable subTable;
+    private javax.swing.JButton viewDetail;
+    private javax.swing.JButton viewHistory;
     // End of variables declaration//GEN-END:variables
 }

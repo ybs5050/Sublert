@@ -1,0 +1,9 @@
+Choice of colletion class: TreeMap
+Rationale:
+1.	A TreeMap class can be used to store a History class variable of my application sorted by date with corresponding Subscriptions. 
+The History class keeps a record of when my application sent a notification to the user. 
+Using a TreeMap class would allow me to keep track of which Subscription was notified on which date. 
+The key would be a History variable, and the value would be a Subscription variable.
+I want to keep my history objects in a descending order.
+The TreeMap class allows me to keep the list of history object sorted. There is no need to sort my objects
+whenever an object is added or deleted. This could help the performance of my application.

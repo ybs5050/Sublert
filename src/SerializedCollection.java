@@ -34,8 +34,8 @@ public class SerializedCollection {
         System.out.println("-------------------------------------");
     }
     
-    public ArrayList getSubscriptionList() {
-        return this.theSubscriptionCtrl.currentSubscriptionList.getList();
+    public LinkedList<Subscription> getSubscriptionList() {
+        return this.theSubscriptionCtrl.subList.getList();
     }
     
     public ArrayList getHistoryList() {

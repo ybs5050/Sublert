@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.text.SimpleDateFormat;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,7 +17,8 @@ public class SubscriptionList implements Serializable  {
     private String listOfSubscriptionFileName = "subscription.ser";
     
     public SubscriptionList() {
-
+        
+        this.readSubscriptionListFile();
         if(listOfSubscription.isEmpty() || listOfSubscription == null) {
             this.createTestSubscriptionList();
             this.writeSubscriptionListFile();
@@ -24,6 +26,7 @@ public class SubscriptionList implements Serializable  {
         }
         this.printSubscriptionList();
     }
+    
     
     public void readSubscriptionListFile() {
         
@@ -61,8 +64,8 @@ public class SubscriptionList implements Serializable  {
    public void createTestSubscriptionList() {
        
         Date date = new Date();
-        for (int i = 0; i < 20; i++){
-            listOfSubscription.add(new Subscription("name", i));
+        for (int i = 0; i < 3; i++){
+            listOfSubscription.add(new Subscription("name", i, "11/22/2017"));
         }
         System.out.println("Test SubscriptionList created");
         System.out.println("The SubscriptionList is: "+listOfSubscription);
@@ -73,12 +76,21 @@ public class SubscriptionList implements Serializable  {
         System.out.println("The SubscriptionList has these subscriptions:");
         for(int i = 0; i < listOfSubscription.size(); i++){
             Subscription currentSubscription = (Subscription) listOfSubscription.get(i);
-            System.out.println(currentSubscription.getSubscriptionPrice());
+            System.out.println(currentSubscription.getSubscriptionName() + " " + currentSubscription.getSubscriptionPrice()
+            +  " " + currentSubscription.getSubscriptionDate());
         }
     }
    
    public ArrayList getList() {
        return this.listOfSubscription;
+   }
+   
+   public void setList(ArrayList<Subscription> arr) {
+       printSubscriptionList();
+   }
+
+   public void updateList(String name, double price, String date, int pos) {
+        this.listOfSubscription.set(pos, new Subscription(name, price, date));
    }
     
 }
