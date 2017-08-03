@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Asus
+ * @author Youngmin
  */
 public class HistoryTreeMapNew extends javax.swing.JFrame {
 
@@ -181,7 +181,8 @@ public class HistoryTreeMapNew extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public boolean checkNull() {
-        if (this.name.getText().isEmpty() || this.date.getText().isEmpty() || "Name".equals(this.name.getText()) || "Date".equals(this.date.getText()) || this.price.getText().equals("Price")) {
+        if (this.name.getText().isEmpty() || this.date.getText().isEmpty() || "Name".equals(this.name.getText()) || this.alertDate.getText().isEmpty()
+                || "Date".equals(this.date.getText()) || this.price.getText().equals("Price")) {
             return true;
         } else {
             return false;

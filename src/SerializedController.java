@@ -1,3 +1,6 @@
+
+import java.text.ParseException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,7 +13,7 @@
  */
 public class SerializedController {
     
-    public SerializedController() {
+    public SerializedController() throws ParseException {
         SerializedCollection sc = new SerializedCollection();
     }
     

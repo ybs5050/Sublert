@@ -43,11 +43,11 @@ public class TimerHashMap implements Serializable {
             Subscription s4 = new Subscription("Apple Music", 2.82, "3/25/17");
             Subscription s5 = new Subscription("Pandora", 9.99, "07/31/17");
             
-            Timer t1 = new Timer(1,1,"5:0:0");
-            Timer t2 = new Timer(3,1, "15:30:0");
-            Timer t3 = new Timer(2,2, "14:25:0");
-            Timer t4 = new Timer(5,1, "3:0:0");
-            Timer t5 = new Timer(2,2, "13:21:0");
+            Timer t1 = new Timer(1,"5:0:0");
+            Timer t2 = new Timer(3,"15:30:0");
+            Timer t3 = new Timer(2,"14:25:0");
+            Timer t4 = new Timer(5,"3:0:0");
+            Timer t5 = new Timer(2,"13:21:0");
             
             this.addItem(s1, t1);
             this.addItem(s2, t2);

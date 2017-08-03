@@ -37,16 +37,16 @@ public class SubscriptionLinkedList implements Serializable {
         // Test Data
         if(option == 0 ) {
             String [] alphabet = {"Netflix","Apple Music", "Amazon", "Hulu", "Paypal", "Pandora", "HBO", "Chegg"};
-            System.out.println("Unsorted Objects: ");
+            //System.out.println("Unsorted Objects: ");
             for(int i = 0; i < alphabet.length; i++) {
-                System.out.println("Name: " + alphabet[i] + " Price: " + i);
+                //System.out.println("Name: " + alphabet[i] + " Price: " + i);
             }
-            System.out.println("Alphabetically Sorted Objects by adding to a Linked List: ");
+            //System.out.println("Alphabetically Sorted Objects by adding to a Linked List: ");
             this.subscriptionLink = new LinkedList<>();
             for(int i = 0; i < alphabet.length; i++) {
                 addItem(new Subscription(alphabet[i], i));
             }
-            this.printSubscriptionList();
+            //this.printSubscriptionList();
         }
     }
     

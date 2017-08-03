@@ -36,14 +36,10 @@ public class Main {
         }
         */
         // Start app with real values
-        //SubscriptionUI subUI = new SubscriptionUI();
-        //SubscriptionCtrl cont = new SubscriptionCtrl(subUI);
+        SubscriptionUI subUI = new SubscriptionUI();
+        SubscriptionCtrl cont = new SubscriptionCtrl(subUI);
         
-        TimerHashMap tm = new TimerHashMap(0);
-        Subscription s5 = new Subscription("Pandora", 9.99, "07/31/17");
-        System.out.println(tm.removeItem(s5));
-        tm.printTimerHashMapList();
-        tm.writeTimerHashMapFile();
+        
         
     }
     

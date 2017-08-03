@@ -1,4 +1,5 @@
 
+import java.text.ParseException;
 import java.util.*;
 
 /*
@@ -18,7 +19,7 @@ public class SerializedCollection {
     private TimerCtrl theTimerCtrl;
     private PersonalCtrl thePersonalCtrl;
     
-    public SerializedCollection() {
+    public SerializedCollection() throws ParseException {
         
         System.out.println("testing History class ");
         this.theHistoryCtrl= new HistoryCtrl();

@@ -35,7 +35,13 @@ public class Timer implements Serializable {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         Date date = sdf.parse(time);
         this.time.setTime(date);
-        
+    }
+    
+    public Timer(int alertFrequency, String time) throws ParseException {
+        this.alertFrequency = alertFrequency;
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Date date = sdf.parse(time);
+        this.time.setTime(date);
     }
     
     public int getAlertDaysPrior() {

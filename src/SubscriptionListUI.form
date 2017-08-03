@@ -27,6 +27,7 @@
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
           </Group>
+          <Component id="viewHistory" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Component id="newButton" min="-2" pref="142" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -35,7 +36,7 @@
               <Component id="exitButton" min="-2" pref="157" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Component id="viewHistory" alignment="0" max="32767" attributes="0"/>
+          <Component id="viewTime" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -50,7 +51,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="viewHistory" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="viewTime" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,6 +114,14 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewHistoryMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="viewTime">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Alert Time list"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewTimeActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

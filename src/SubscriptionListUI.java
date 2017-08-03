@@ -1,8 +1,11 @@
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -52,6 +55,7 @@ public class SubscriptionListUI extends javax.swing.JFrame {
         viewDetail = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         viewHistory = new javax.swing.JButton();
+        viewTime = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +92,13 @@ public class SubscriptionListUI extends javax.swing.JFrame {
             }
         });
 
+        viewTime.setText("View Alert Time list");
+        viewTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewTimeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,6 +106,7 @@ public class SubscriptionListUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(1, 1, 1)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+            .addComponent(viewHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -102,7 +114,7 @@ public class SubscriptionListUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(viewHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(viewTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +127,8 @@ public class SubscriptionListUI extends javax.swing.JFrame {
                     .addComponent(exitButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewHistory)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewTime))
         );
 
         pack();
@@ -149,6 +162,15 @@ public class SubscriptionListUI extends javax.swing.JFrame {
         HistoryCtrl hisCont = new HistoryCtrl();
         hisCont.getHistoryMapTableView(this.getX() + this.getWidth(), this.getY());
     }//GEN-LAST:event_viewHistoryMouseClicked
+
+    private void viewTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTimeActionPerformed
+        try {
+            TimerCtrl timeCont = new TimerCtrl();
+            timeCont.getTimerMapTableView(this.getX() + this.getWidth(), this.getY());
+        } catch (ParseException ex) {
+            Logger.getLogger(SubscriptionListUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_viewTimeActionPerformed
     
     private void printCurrentSubscriptions() {
         
@@ -172,5 +194,6 @@ public class SubscriptionListUI extends javax.swing.JFrame {
     private javax.swing.JTable subTable;
     private javax.swing.JButton viewDetail;
     private javax.swing.JButton viewHistory;
+    private javax.swing.JButton viewTime;
     // End of variables declaration//GEN-END:variables
 }
